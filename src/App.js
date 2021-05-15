@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Navbar from "./Components/Navbar"
+import SelectionTile from "./Components/SelectionTile";
+import Game from "./Components/Game"; 
+
+//to do: set database with names of games/ pictures, make several selectiontiles with their names as props
 
 function App() {
+  const [activeGame, setActiveGame] = useState("");
+
+  const triggerChange = (game) => {
+    setActiveGame(game);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <div className="App">
+        { !activeGame && <SelectionTile  triggerChange={triggerChange} />}
+        { activeGame && <Game gameName={activeGame} />}
+      </div>
     </div>
   );
 }
