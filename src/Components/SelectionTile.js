@@ -2,10 +2,10 @@ const SelectionTile = (props) => {
     
 
     return (
-        <div>
-            <button onClick={() => props.triggerChange("test")} >
-                <img className="" src="https://i.imgur.com/CU6iiOf.jpeg" alt="wally" />
-                <h5>Easy</h5>
+        <div className="selectionTile">
+            <button onClick={() => props.triggerChange(props.level)} >
+                <img className="tileImage" src={props.url} alt="wally" />
+                <h5>{props.level}</h5>
             </button>
         </div>
     )

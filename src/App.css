@@ -22,3 +22,11 @@
   margin: 0;
   display: block;
 }
+
+.selectionTile {
+  width: 500px;
+}
+
+.tileImage {
+  width: 500px;
+}
