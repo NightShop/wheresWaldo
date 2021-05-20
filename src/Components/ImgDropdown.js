@@ -1,11 +1,15 @@
 import { Redirect } from "react-router";
-
+import uniqid from "uniqid";
 const ImgDropdown = (props) => {
 
-    console.log(props.x, " ", props.y);
+    const characters = props.characters;
+
+    const selectionCheck = (charName) => {
+        props.selectionCheck(charName);
+    }
 
     return (
-        <div className="imgDropdown" 
+        <div className="imgDropdown" onClick={props.closeDropdown}
         style={
             {
                 position: "absolute",
@@ -14,9 +18,9 @@ const ImgDropdown = (props) => {
                 border: "5px solid red",
             }
         }>
-            <button>
-                Im a dropdown
-            </button>
+            {characters && Object.keys(characters).map(keyObj => {
+                return <button onClick={() => selectionCheck(keyObj)} key={uniqid()}>{keyObj}</button>
+            })}
         </div >
     )
 }
