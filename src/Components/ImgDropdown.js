@@ -1,4 +1,3 @@
-import { Redirect } from "react-router";
 import uniqid from "uniqid";
 const ImgDropdown = (props) => {
 
