@@ -5,5 +5,17 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
-  }
+ 		match /scoreBoard-easy/{docID} {
+    allow write: if true;
+    allow read: if true;
+    }
+    match /scoreBoard-medium/{docID} {
+    allow write: if true;
+    allow read: if true;
+    }
+    match /scoreBoard-hard/{docID} {
+    allow write: if true;
+    allow read: if true;
+    }
+    }
 }

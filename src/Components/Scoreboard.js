@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import firebase from "../Firebase";
 import uniqid from "uniqid";
+import ScoreboardLine from "./ScoreboardLine";
 
 const Scoreboard = (props) => {
     const [listOfPlayers, setListOfPlayers] = useState();
@@ -26,7 +27,8 @@ const Scoreboard = (props) => {
         <div>
             <h1>Hall of fame, level {props.level}</h1>
             {listOfPlayers && listOfPlayers.map(player => {
-                return <h1 key={uniqid()}>{Object.keys(player)}</h1>
+                const values = Object.values(player);
+                return <ScoreboardLine key={uniqid()} name={Object.keys(player)} beginningSeconds={values[0].timeBeginning && values[0].timeBeginning.seconds} endSeconds={values[0].timeEnd && values[0].timeEnd.seconds} />
             })}
         </div>
     )

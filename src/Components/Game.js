@@ -9,7 +9,7 @@ const Game = (props) => {
     const [xCoord, setXCoord] = useState();
     const [yCoord, setYCoord] = useState();
     const [showImgDropdown, setShowImgDropdown] = useState(false);
-    const [characters, setCharacters] = useState(Object.entries(gameData.characters).map(character => ({[character[0]]: false})));
+    const [characters, setCharacters] = useState(Object.entries(gameData.characters).map(character => ({ [character[0]]: false })));
 
     const db = firebase.firestore();
 
@@ -31,6 +31,21 @@ const Game = (props) => {
             }, { merge: true });
         }
     })
+    useEffect(() => {
+
+
+
+        return () => {
+            const areAllCharsTrue = characters.every(characterObject => {
+                return Object.values(characterObject)[0];
+            });
+            console.log(characters);
+            console.log(areAllCharsTrue);
+            if (!areAllCharsTrue) {
+                db.collection(`scoreBoard-${gameData.level}`).doc(props.userNickname).delete().then(() => { console.log("User ", props.userNickname, " deleted.") })
+            }
+        }
+    }, [characters, db, gameData.level, props.userNickname])
 
     //update characters array when correctly clicked and chosen character
     useEffect(() => {
