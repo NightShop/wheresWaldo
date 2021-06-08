@@ -8,7 +8,8 @@ const LoginForm = (props) => {
             <label>Enter nickname: </label>
             <input value={nickname} onChange={(ev) => setNickname(ev.target.value)} />
             <button onClick={(event) => {
-                props.onbuttonClick(nickname)
+                event.preventDefault();
+                props.onClickSubmitButton(nickname)
                 }}>Apply</button>
         </form>
     </div>

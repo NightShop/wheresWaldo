@@ -1,12 +1,11 @@
 const ScoreboardLine = (props) => {
-    console.log(props.endSeconds === undefined);
-    if((props.endSeconds === undefined) || props.beginningSeconds === undefined) {
+    if(props.time === undefined) {
         return null;
     }
 
     return (
         <div>
-        <h1>{props.name} - {props.endSeconds - props.beginningSeconds}</h1>
+        <h1>{props.name} - {props.time}</h1>
         </div>
     )
 }
