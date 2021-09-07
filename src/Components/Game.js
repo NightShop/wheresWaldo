@@ -4,6 +4,7 @@ import firebase from "./../Firebase";
 import uniqid from "uniqid";
 import GameTimer from "./GameTimer";
 import LoginForm from "./LoginForm";
+import LoginPopup from "./LoginPopup";
 
 
 //when user starts game create temporary timebeggining and when he goes out update time end
@@ -81,7 +82,7 @@ const Game = (props) => {
     
     return (
         <div>
-            {allCharactersFound && <LoginForm onClickSubmitButton={saveTimeToServer} />}
+            {allCharactersFound && <LoginPopup onClickSubmitButton={saveTimeToServer} />}
             <h1>This is {props.gameName} game</h1>
             <GameTimer gameOver={gameOver} setGameOver={setGameOver} allCharFound={allCharactersFound} getTime={getTime}/>
             {characters.map((character => {

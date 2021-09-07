@@ -35,5 +35,12 @@
 }
 
 .gameImage {
-  width: 100%;
+  width: 100vw;
+}
+
+.LoginPopup {
+  position: fixed;
+  background-color: blueviolet;
+  left: 50%;
+  z-index: 5;
 }
