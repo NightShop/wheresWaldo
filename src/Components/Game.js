@@ -3,8 +3,8 @@ import ImgDropdown from "./ImgDropdown";
 import firebase from "./../Firebase";
 import uniqid from "uniqid";
 import GameTimer from "./GameTimer";
-import LoginForm from "./LoginForm";
 import LoginPopup from "./LoginPopup";
+import CharacterIcon from "./CharacterIcon";
 
 
 //when user starts game create temporary timebeggining and when he goes out update time end
@@ -79,12 +79,17 @@ const Game = (props) => {
 
         props.triggerChange("");
     }
+
+    const charactersDict = characters;
     
     return (
         <div>
             {allCharactersFound && <LoginPopup onClickSubmitButton={saveTimeToServer} />}
             <h1>This is {props.gameName} game</h1>
             <GameTimer gameOver={gameOver} setGameOver={setGameOver} allCharFound={allCharactersFound} getTime={getTime}/>
+            {characters.map((character) => {
+                return <CharacterIcon character={character}/>
+            })}
             {characters.map((character => {
                 return <h3 key={uniqid()}>{Object.keys(character)}: {character[Object.keys(character)].toString()} </h3>
             }))}
