@@ -3,8 +3,9 @@ import LoginForm from "./LoginForm"
 const LoginPopup = (props) => {
     return (
         <div className="LoginPopup">
-            <p>bfdgoisjdfpoisnfopijosadfjosijfsdoijfos</p>
+            <p>Submit your score</p>
             <LoginForm onClickSubmitButton={props.onClickSubmitButton}/>
+            <button className="loginFormButtons" onClick={() => props.triggerChange("")}>Back</button>
         </div>
     )
 }

@@ -21,17 +21,22 @@ const Game = (props) => {
     const [gameTime, setGameTime] = useState("");
     const [gameOver, setGameOver] = useState(false);
 
+    let xCoordTemp;
+    let yCoordTemp;
+    
+
     const db = firebase.firestore();
 
     const handleImageClick = (event) => {
-        setXCoord(event.pageX - event.target.getBoundingClientRect().left - window.pageXOffset);
-        setXCoordRel(xCoord/event.target.width);
-        setYCoord(event.pageY - event.target.getBoundingClientRect().top - window.pageYOffset);
-        setYCoordRel(yCoord/event.target.height);
+        xCoordTemp = event.pageX - event.target.getBoundingClientRect().left - window.pageXOffset
+        setXCoord(xCoordTemp);
+        setXCoordRel(xCoordTemp/event.target.width);
+        yCoordTemp = event.pageY - event.target.getBoundingClientRect().top - window.pageYOffset;
+        setYCoord(yCoordTemp);
+        setYCoordRel(yCoordTemp/event.target.height);
         setShowImgDropdown(!showImgDropdown);
-/* 
-        console.log(event.target.width);
-        console.log("x: ", xCoord, " y: ", yCoord);
+        /* 
+        console.log("x: ", xCoordTemp, " y: ", yCoordTemp);
         console.log(`coordinates of of click, relative: x/width = ${xCoord/event.target.width} y/width = ${yCoord/event.target.height}`); 
         */
     }
@@ -47,14 +52,7 @@ const Game = (props) => {
             parseFloat(gameData.characters[charName].y, 10) - 0.05,
             parseFloat(gameData.characters[charName].y, 10) + 0.05
         ]
-/* 
-        console.table(xCoordRange);
-        console.table(xCoordRel);
-
-        console.table(yCoordRange);
-        console.table(yCoordRel);
- */
-console.log(xCoordRel);
+        
         if (
             xCoordRel >= xCoordRange[0] &&
             xCoordRel <= xCoordRange[1] &&
@@ -99,7 +97,7 @@ console.log(xCoordRel);
     
     return (
         <div>
-            {allCharactersFound && <LoginPopup onClickSubmitButton={saveTimeToServer} />}
+            {allCharactersFound && <LoginPopup onClickSubmitButton={saveTimeToServer} triggerChange={props.triggerChange}/>}
             <h1>This is {props.gameName} game</h1>
             <GameTimer gameOver={gameOver} setGameOver={setGameOver} allCharFound={allCharactersFound} getTime={getTime}/>
             {characters.map((character) => {
@@ -112,7 +110,7 @@ console.log(xCoordRel);
                 props.triggerChange("")
             }}>Back</button>
             <div style={{ display: "inline-block", position: "relative" }}>
-                {showImgDropdown && <ImgDropdown closeDropdown={closeDropdown} selectionCheck={selectionCheck} characters={gameData.characters} x={xCoord} y={yCoord} />}
+                {showImgDropdown && <ImgDropdown closeDropdown={closeDropdown} selectionCheck={selectionCheck} charactersFound={characters} characters={gameData.characters} x={xCoord} y={yCoord} />}
                 <img className="gameImage" draggable={false} src={gameData.url} alt={`Where's Waldo ${gameData.level.charAt(0).toUpperCase() + gameData.level.slice(1)}`} onClick={(event => handleImageClick(event))} />
             </div>
         </div>

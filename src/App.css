@@ -47,6 +47,7 @@
   background-color: blueviolet;
   left: 50%;
   z-index: 5;
+  text-align: center;
 }
 
 .charImg {
@@ -66,4 +67,10 @@
 
 .found {
   filter: blur(5px);
+}
+
+.loginFormButtons {
+  width: 100%;
+  margin-top: 5px;
+
 }

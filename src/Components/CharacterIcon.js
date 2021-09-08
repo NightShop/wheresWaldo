@@ -6,7 +6,6 @@ const CharacterIcon = (props) => {
     }
 
     let classes = "charImg";
-    
     if (Object.values(props.character)[0] === true) {
         classes += " found"
     }
