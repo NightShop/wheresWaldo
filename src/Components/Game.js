@@ -12,7 +12,9 @@ import CharacterIcon from "./CharacterIcon";
 const Game = (props) => {
     const gameData = props.gameData;
     const [xCoord, setXCoord] = useState();
+    const [xCoordRel, setXCoordRel] = useState();
     const [yCoord, setYCoord] = useState();
+    const [yCoordRel, setYCoordRel] = useState();
     const [showImgDropdown, setShowImgDropdown] = useState(false);
     const [characters, setCharacters] = useState(Object.entries(gameData.characters).map(character => ({ [character[0]]: false })));
     const [allCharactersFound, setAllCharactersFound] = useState(false);
@@ -23,27 +25,41 @@ const Game = (props) => {
 
     const handleImageClick = (event) => {
         setXCoord(event.pageX - event.target.getBoundingClientRect().left - window.pageXOffset);
+        setXCoordRel(xCoord/event.target.width);
         setYCoord(event.pageY - event.target.getBoundingClientRect().top - window.pageYOffset);
-        console.log("x: ", xCoord, " y: ", yCoord);
+        setYCoordRel(yCoord/event.target.height);
         setShowImgDropdown(!showImgDropdown);
+/* 
+        console.log(event.target.width);
+        console.log("x: ", xCoord, " y: ", yCoord);
+        console.log(`coordinates of of click, relative: x/width = ${xCoord/event.target.width} y/width = ${yCoord/event.target.height}`); 
+        */
     }
 
-    //check if given charName is range of current mouse click and change it in characters array
+    //check if given charName is in range of current mouse click and change it in characters array
     const selectionCheck = (charName) => {
         const xCoordRange = [
-            parseInt(gameData.characters[charName].x, 10) - 20,
-            parseInt(gameData.characters[charName].x, 10) + 20
-        ]
-        const yCoordRange = [
-            parseInt(gameData.characters[charName].y, 10) - 50,
-            parseInt(gameData.characters[charName].y, 10) + 50
+            parseFloat(gameData.characters[charName].x, 10) - 0.035,
+            parseFloat(gameData.characters[charName].x, 10) + 0.035
         ]
 
+        const yCoordRange = [
+            parseFloat(gameData.characters[charName].y, 10) - 0.05,
+            parseFloat(gameData.characters[charName].y, 10) + 0.05
+        ]
+/* 
+        console.table(xCoordRange);
+        console.table(xCoordRel);
+
+        console.table(yCoordRange);
+        console.table(yCoordRel);
+ */
+console.log(xCoordRel);
         if (
-            xCoord >= xCoordRange[0] &&
-            xCoord <= xCoordRange[1] &&
-            yCoord >= yCoordRange[0] &&
-            yCoord <= yCoordRange[1]) {
+            xCoordRel >= xCoordRange[0] &&
+            xCoordRel <= xCoordRange[1] &&
+            yCoordRel >= yCoordRange[0] &&
+            yCoordRel <= yCoordRange[1]) {
 
             const index = characters.findIndex(character => Object.keys(character)[0] === charName)
             const newCharactersArray = JSON.parse(JSON.stringify(characters));
@@ -80,7 +96,6 @@ const Game = (props) => {
         props.triggerChange("");
     }
 
-    const charactersDict = characters;
     
     return (
         <div>
