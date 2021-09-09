@@ -21,7 +21,7 @@ const GameTimer = (props) => {
         }
     }, [props.gameOver]);
 
-    return <p>{timer}</p>
+    return <p className="timer">{timer}</p>
 }
 
 export default GameTimer;

@@ -113,12 +113,6 @@
   font-size: 30px;
 }
 
-.buttonGeneral {
-  margin: 20px;
-  padding: 20px;
-  font-size: 18px;
-  cursor: pointer;
-}
 
 h1 {
   display: block;
@@ -133,10 +127,51 @@ h1 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 20px;
 }
 
 .characterFoundIndicator > div {
   margin: 20px;
   border: 5px solid #1b4d89;
+}
+.buttonGeneral {
+  margin: 20px;
+  margin-top: 30px;
+  display:inline-block;
+  padding:0.7em 1.7em;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  background-color:#2769b9;
+  text-align:center;
+  transition: all 0.2s;
+  border: none;
+}
+  .buttonGeneral:hover{
+  background-color:#113157;
+  }
+
+.scoreBoardLine {
+  color:#1b4d89;
+  font-size: 15px;
+  border-top: solid 1px #dac74e;
+  margin: 0 10%;
+  padding: 10px 0;
+}
+
+.hallOfFame {
+  font-size: 30px;
+  color:#1b4d89;
+  border-top: solid 1px #99d4d3;
+  padding-top: 25px;
+  margin-top: 20px;
+}
+
+.timer {
+  color: #f9e45b;
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
 }
