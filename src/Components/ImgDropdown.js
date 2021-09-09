@@ -16,15 +16,12 @@ const ImgDropdown = (props) => {
                 position: "absolute",
                 top: props.y,
                 left: props.x,
-                border: "5px solid red",
+                backgroundColor: "transparent", 
             }
         }>
-            {characters && Object.keys(characters).map(keyObj => {
-                return <button onClick={() => selectionCheck(keyObj)} key={uniqid()}>{keyObj}</button>
-            })}
             {characters && Object.keys(characters).map((keyObj, i) => {
-                return <button onClick={() => selectionCheck(keyObj)} key={uniqid()}>
-                    <CharacterIcon character={props.charactersFound[i]}/>
+                return <button className="characterButton" onClick={() => selectionCheck(keyObj)} key={uniqid()}>
+                    <CharacterIcon isButton={true} character={props.charactersFound[i]}/>
                 </button>
             })}
         </div >

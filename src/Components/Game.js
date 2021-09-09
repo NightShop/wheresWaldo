@@ -98,21 +98,19 @@ const Game = (props) => {
     return (
         <div>
             {allCharactersFound && <LoginPopup onClickSubmitButton={saveTimeToServer} triggerChange={props.triggerChange}/>}
-            <h1>This is {props.gameName} game</h1>
             <GameTimer gameOver={gameOver} setGameOver={setGameOver} allCharFound={allCharactersFound} getTime={getTime}/>
+            <div className="characterFoundIndicator">
             {characters.map((character) => {
                 return <CharacterIcon character={character}/>
             })}
-            {characters.map((character => {
-                return <h3 key={uniqid()}>{Object.keys(character)}: {character[Object.keys(character)].toString()} </h3>
-            }))}
-            <button onClick={() => {
-                props.triggerChange("")
-            }}>Back</button>
+            </div>
             <div style={{ display: "inline-block", position: "relative" }}>
                 {showImgDropdown && <ImgDropdown closeDropdown={closeDropdown} selectionCheck={selectionCheck} charactersFound={characters} characters={gameData.characters} x={xCoord} y={yCoord} />}
                 <img className="gameImage" draggable={false} src={gameData.url} alt={`Where's Waldo ${gameData.level.charAt(0).toUpperCase() + gameData.level.slice(1)}`} onClick={(event => handleImageClick(event))} />
             </div>
+            <button onClick={() => {
+                props.triggerChange("")
+            }}>Back</button>
         </div>
     )
 }

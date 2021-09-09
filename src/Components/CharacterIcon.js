@@ -10,8 +10,15 @@ const CharacterIcon = (props) => {
         classes += " found"
     }
 
+    let classesCircle = "charCircle"
+
+    if(props.isButton === true) {
+        classesCircle += " isCharacterCircle";
+        classes += " isCharacterButton";
+    }
+
     return (
-        <div className="charCircle">
+        <div className={classesCircle}>
             <img className={classes} src={charactersPhotoLinks[Object.keys(props.character)[0]]} alt="missing" />
         </div>
     )

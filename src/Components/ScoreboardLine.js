@@ -5,7 +5,7 @@ const ScoreboardLine = (props) => {
 
     return (
         <div>
-        <h1>{props.name} - {props.time}</h1>
+        <h5 className="scoreBoardLine">{props.name} - {props.time}</h5>
         </div>
     )
 }

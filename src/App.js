@@ -36,7 +36,7 @@ function App() {
     <div>
       <Navbar />
       <div className="App">
-        {!activeGame && gamesData && gamesData.map(game => <SelectionTile key={uniqid()} level={game.level} url={game.url} triggerChange={changeGame} />)}
+        {!activeGame && gamesData && gamesData.map(game => <SelectionTile key={uniqid()} level={game.level} url={game.url} triggerChange={changeGame} characters={game.characters}/>)}
         {activeGame && <Game gameName={activeGame} triggerChange={changeGame} gameData={gamesData.find((game) => game.level === activeGame )}/>}
       </div>
     </div>

@@ -28,7 +28,7 @@ const Scoreboard = (props) => {
 
     return (
         <div>
-            <h1>Hall of fame, level {props.level}</h1>
+            <h2>Hall of fame, level {props.level}</h2>
             {listOfPlayers && listOfPlayers
                 .map(player => {
                     return <ScoreboardLine key={uniqid()} name={Object.keys(player)} time={Object.values(player)} />
