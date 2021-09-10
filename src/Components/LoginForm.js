@@ -5,9 +5,10 @@ const LoginForm = (props) => {
 
     return <div className="loginForm">
         <form>
+            <label>Name: </label>
             <input value={nickname} onChange={(ev) => setNickname(ev.target.value)} />
             <br/>
-            <button className="loginFormButtons" onClick={(event) => {
+            <button className="loginFormButtons buttonGeneral" onClick={(event) => {
                 event.preventDefault();
                 props.onClickSubmitButton(nickname)
                 }}>Submit</button>

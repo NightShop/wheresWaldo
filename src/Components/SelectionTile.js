@@ -1,6 +1,7 @@
 import Scoreboard from "./Scoreboard";
 import { useState } from "react";
 import CharacterIcon from "./CharacterIcon";
+import uniqid from "uniqid";
 
 const SelectionTile = (props) => {
     const [scoreVisible, setScoreVisible] = useState(false);
@@ -9,18 +10,15 @@ const SelectionTile = (props) => {
         setScoreVisible(!scoreVisible);
     }
 
-    const charactersArray = Object.keys(props.characters);
-    console.log(props.characters);
-
     return (
 
         <button className="selectionTile" onClick={() => props.triggerChange(props.level)} >
             <h2 className="selectionTileTitle">{props.level.toUpperCase()}</h2>
             <div className="charactersToFind">
-            {Object.keys(props.characters).map(characterName => <CharacterIcon character={{ [characterName]: false }} />)}
+            {Object.keys(props.characters).map(characterName => <CharacterIcon key={uniqid()} character={{ [characterName]: false }} />)}
             </div>
             <img className="tileImage" src={props.url} alt="wally" />
-            <button className="buttonGeneral" onClick={toggleScoreButton}>{scoreVisible ? "Hide Leaderboard" : "Show Leaderboard"}</button>
+            <div className="buttonGeneral" onClick={toggleScoreButton}>{scoreVisible ? "Hide Leaderboard" : "Show Leaderboard"}</div>
             {scoreVisible && <Scoreboard level={props.level} />}
         </button>
 

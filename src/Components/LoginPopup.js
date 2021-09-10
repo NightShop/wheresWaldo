@@ -5,7 +5,7 @@ const LoginPopup = (props) => {
         <div className="LoginPopup">
             <p>Submit your score</p>
             <LoginForm onClickSubmitButton={props.onClickSubmitButton}/>
-            <button className="loginFormButtons" onClick={() => props.triggerChange("")}>Back</button>
+            <button className="loginFormButtons buttonGeneral" onClick={() => props.triggerChange("")}>Back</button>
         </div>
     )
 }

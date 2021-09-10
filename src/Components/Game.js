@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ImgDropdown from "./ImgDropdown";
 import firebase from "./../Firebase";
-import uniqid from "uniqid";
 import GameTimer from "./GameTimer";
 import LoginPopup from "./LoginPopup";
 import CharacterIcon from "./CharacterIcon";
@@ -108,9 +107,11 @@ const Game = (props) => {
                 {showImgDropdown && <ImgDropdown closeDropdown={closeDropdown} selectionCheck={selectionCheck} charactersFound={characters} characters={gameData.characters} x={xCoord} y={yCoord} />}
                 <img className="gameImage" draggable={false} src={gameData.url} alt={`Where's Waldo ${gameData.level.charAt(0).toUpperCase() + gameData.level.slice(1)}`} onClick={(event => handleImageClick(event))} />
             </div>
-            <button onClick={() => {
+            <div className="backButtonDiv">
+            <button className="buttonGeneral" onClick={() => {
                 props.triggerChange("")
             }}>Back</button>
+            </div>
         </div>
     )
 }
